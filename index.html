@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Manzuá Hotel | Reservas</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body style="background: url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80') center/cover;">
+    
+    <div style="background:rgba(0,0,0,0.5);height:100vh;display:flex;align-items:center;justify-content:center;color:white;text-align:center;">
+        <div>
+            <h1 style="font-size:3rem;margin-bottom:20px;">Bem-vindo ao Manzuá</h1>
+            <p style="font-size:1.2rem;margin-bottom:30px;">Experiência única de conforto e luxo.</p>
+            <a href="login.html" class="btn-primary">Acesso Funcionários</a>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                Atendente Virtual Manzuá
+                <span style="float:right;cursor:pointer" onclick="toggleChat()">close</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Olá! Como posso ajudar na sua reserva hoje?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Digite sua dúvida...">
+                <button onclick="sendMsg()" class="btn-primary" style="padding:5px 10px;"><span class="material-icons">send</span></button>
+            </div>
+        </div>
+        <button class="chat-toggle" onclick="toggleChat()">
+            <span class="material-icons">smart_toy</span>
+        </button>
+    </div>
+
+    <script type="module">
+        import { sendMessage } from './assets/js/ai-agent.js';
+        window.sendMsg = sendMessage;
+        
+        window.toggleChat = () => {
+            document.getElementById('chatWindow').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

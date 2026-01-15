@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Manzuá Hotel</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="material-icons">diamond</span> Manzuá
+            </div>
+            <nav>
+                <button class="menu-item active"><span class="material-icons">dashboard</span> Visão Geral</button>
+                <button class="menu-item"><span class="material-icons">calendar_month</span> Reservas</button>
+                <button class="menu-item" onclick="logout()"><span class="material-icons">logout</span> Sair</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Painel de Controle</h1>
+                <button class="btn-primary" onclick="document.getElementById('bookingModal').classList.remove('hidden')">
+                    <span class="material-icons">add</span> Nova Reserva
+                </button>
+            </header>
+
+            <div class="stats-grid">
+                <div class="card">
+                    <span class="stat-label">Faturamento Hoje</span>
+                    <div class="stat-value" id="statsRevenue">R$ 0,00</div>
+                </div>
+                <div class="card">
+                    <span class="stat-label">Check-ins Pendentes</span>
+                    <div class="stat-value" id="statsCheckins">0</div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hóspede</th><th>Quarto</th><th>Valor</th><th>Status</th><th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="bookingModal" class="hidden" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;">
+        <div class="card" style="width:400px;">
+            <h2>Nova Reserva</h2>
+            <form id="newBookingForm" style="display:flex;flex-direction:column;gap:15px;margin-top:20px;">
+                <input type="text" id="guestName" placeholder="Nome do Hóspede" style="padding:10px;border:1px solid #ddd;border-radius:8px;" required>
+                <select id="roomSelect" style="padding:10px;border:1px solid #ddd;border-radius:8px;">
+                    <option value="101">101 - Standard</option>
+                    <option value="102">102 - Luxo</option>
+                </select>
+                <input type="number" id="totalAmount" placeholder="Valor (R$)" style="padding:10px;border:1px solid #ddd;border-radius:8px;" required>
+                <button type="submit" class="btn-primary">Salvar</button>
+                <button type="button" onclick="document.getElementById('bookingModal').classList.add('hidden')" style="background:none;border:none;cursor:pointer;">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadDashboard, createBooking } from './assets/js/booking.js';
+        
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', loadDashboard);
+        document.getElementById('newBookingForm').addEventListener('submit', createBooking);
+    </script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

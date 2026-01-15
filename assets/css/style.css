@@ -1,0 +1,26 @@
+/* assets/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #c8a45e; /* Dourado Luxo */
+    --primary-dark: #b08d45;
+    --dark-bg: #0f172a;
+    --light-bg: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background-color: var(--light-bg); color: var(--text-main); height: 100vh; overflow: hidden; }
+a { text-decoration: none; }
+.hidden { display: none !important; }
+
+/* Botão Padrão */
+.btn-primary {
+    background: var(--primary); color: white; border: none; padding: 10px 20px;
+    border-radius: var(--radius); cursor: pointer; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
