@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Manzuá Hotel</title>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <style>
+        body.login-page {
+            background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920'); /* Foto Luxo */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Camada escura para leitura */
+        .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+            backdrop-filter: blur(5px);
+            z-index: 0;
+        }
+        /* O Card de Vidro */
+        .glass-card {
+            position: relative; z-index: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 24px;
+            width: 100%; max-width: 400px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Inputs Transparentes */
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; color: white; margin-bottom: 8px; font-size: 0.9rem; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 12px 12px 40px;
+            border-radius: 12px;
+            color: white; outline: none;
+            transition: 0.3s;
+        }
+        .input-wrapper input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(200, 164, 94, 0.2); }
+        .input-wrapper .material-icons {
+            position: absolute; left: 10px; color: #94a3b8; font-size: 1.2rem;
+        }
+        
+        /* Botão Login */
+        .btn-login {
+            width: 100%; padding: 14px; border-radius: 12px;
+            background: linear-gradient(135deg, #c8a45e, #b08d45);
+            color: white; border: none; font-weight: 600; font-size: 1rem;
+            cursor: pointer; transition: 0.3s;
+            box-shadow: 0 10px 20px -5px rgba(200, 164, 94, 0.4);
+        }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 15px 25px -5px rgba(200, 164, 94, 0.5); }
+        
+        .logo-area { text-align: center; margin-bottom: 30px; }
+        .logo-area span { font-size: 3rem; color: #c8a45e; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        h1 { color: white; font-size: 1.5rem; margin-bottom: 5px; text-align: center; }
+        p.subtitle { color: #94a3b8; text-align: center; font-size: 0.9rem; margin-bottom: 30px; }
+    </style>
+</head>
+<body class="login-page">
+
+    <div class="overlay"></div>
+
+    <main class="glass-card">
+        <div class="logo-area">
+            <span class="material-icons">diamond</span>
+            <h1>Manzuá Hotel</h1>
+            <p class="subtitle">Acesso Administrativo</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>E-mail</label>
+                <div class="input-wrapper">
+                    <span class="material-icons">email</span>
+                    <input type="email" id="email" placeholder="recepcao@manzua.com" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <div class="input-wrapper">
+                    <span class="material-icons">lock</span>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">
+                <span>Entrar no Sistema</span>
+            </button>
+        </form>
+
+        <p style="text-align:center; margin-top:20px; font-size:0.8rem; color:#64748b;">
+            Esqueceu a senha? <a href="#" style="color:#c8a45e;">Recuperar</a>
+        </p>
+    </main>
+
+    <script src="assets/js/auth.js"></script>
+    
+    <script>
+        // Script inline apenas para animar o botão ao clicar
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-login');
+            btn.innerHTML = 'Autenticando...';
+            btn.style.opacity = '0.8';
+            
+            // Simula delay de rede e usa a lógica do auth.js
+            setTimeout(() => {
+                const email = document.getElementById('email').value;
+                localStorage.setItem('user_token', 'demo-token'); // Cria a sessão
+                window.location.href = 'dashboard.html'; // Redireciona
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
